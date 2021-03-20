@@ -35,4 +35,12 @@ class PostController extends Controller
     {
         return redirect()->route('posts.index');
     }
+    public function edit()
+    {
+        $post = ['id' => 1, 'title' => 'Laravel','desc'=>'Laravel is an awesome framework' ,'posted_by' => 'Ali', 'created_at' => '2021-03-04','creator'=>['name'=>'Ali','email'=>'ali@ali.com']];
+
+        return view('posts.edit',[
+            'post' =>$post
+        ]);
+    }
 }
