@@ -9,7 +9,8 @@
 </head>
     <body>
         <nav class="navbar navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1">Navbar</span>
+            {{-- <span class="navbar-brand mb-0 h1">Navbar</span> --}}
+            <a href="{{route('posts.index')}}" class="navbar-brand  h1">All Posts</a>
         </nav>
         <div class="container p-3">
             @yield('content')
