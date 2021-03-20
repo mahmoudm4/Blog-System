@@ -2,7 +2,7 @@
 @section('title') Index Page @endsection
 @section('content')
 
-<button class="btn btn-success" class="mb-3">Create Post</button>
+<a href="{{ route('posts.create') }}" class="btn btn-success" class="mb-3">Create Post</a>
     <table class="table">
         <thead>
           <tr>

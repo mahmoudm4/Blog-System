@@ -25,4 +25,14 @@ class PostController extends Controller
             'post' =>$post
         ]);
     }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+        return redirect()->route('posts.index');
+    }
 }
