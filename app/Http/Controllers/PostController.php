@@ -9,7 +9,7 @@ class PostController extends Controller
     public function index(){
         $allposts = [
             ['id' => 1, 'title' => 'Laravel', 'posted_by' => 'Ali', 'created_at' => '2021-03-04','creator'=>['name'=>'Ali','email'=>'ali@ali.com']],
-            ['id' => 2, 'title' => 'Java', 'posted_by' => 'Ahmed', 'created_at' => '2021-10-24'],'creator'=>['name'=>'Ahmed','email'=>'ali@ali.com'],
+            ['id' => 2, 'title' => 'Java', 'posted_by' => 'Ahmed', 'created_at' => '2021-10-24','creator'=>['name'=>'Ahmed','email'=>'ali@ali.com']],
             ['id' => 3, 'title' => 'C#', 'posted_by' => 'Mahmoud', 'created_at' => '2021-08-14','creator'=>['name'=>'Mahmoud','email'=>'ali@ali.com']]
         ];
         return view('posts.index',[
