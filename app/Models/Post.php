@@ -13,4 +13,13 @@ class Post extends Model
         'desc',
         'user_id'
     ];
+
+    // public function myUserPost(){
+        
+    //     return $this->belongsTo(User::class,"user_id");
+    // }
+    public function user(){
+        
+        return $this->belongsTo(User::class);
+    }
 }

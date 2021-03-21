@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
-                    <td>{{$post->posted_by}}</td>
+                    <td>{{$post->user ? $post->user->name : "User Not Found"}}</td>
                     <td>{{$post->created_at}}</td>
                     <td>
                         <a href="{{ route('posts.show',['post'=>$post->id]) }}" class="btn btn-info " >View</a>
