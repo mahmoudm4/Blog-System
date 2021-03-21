@@ -28,8 +28,18 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        // Needs Fillable in Post
+        // Post::create([
+        //     'title' => request()->title,
+        //     'desc'=> request()->desc
+        // ]);
+        // OR
+        $post = new Post();
+        $post->title = $request->title;
+        $post->desc = $request->desc;
+        $post->save();
         return redirect()->route('posts.index');
     }
     public function edit()
