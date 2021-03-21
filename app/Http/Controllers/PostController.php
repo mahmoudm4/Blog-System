@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -25,21 +26,30 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        $users = User::all();
+       // dd($users);
+        return view('posts.create',[
+            'users'=>$users
+        ]);
     }
 
     public function store(Request $request)
     {
+        $requestedData = $request->all();
+        //dd($requestedData);
+        Post::create($requestedData);
+        
+        //  OR-----------------------------
         // Needs Fillable in Post
         // Post::create([
         //     'title' => request()->title,
         //     'desc'=> request()->desc
         // ]);
-        // OR
-        $post = new Post();
-        $post->title = $request->title;
-        $post->desc = $request->desc;
-        $post->save();
+        // OR---------------------------------
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->desc = $request->desc;
+        // $post->save();
         return redirect()->route('posts.index');
     }
     public function edit()

@@ -11,8 +11,12 @@
       <textarea type="text" class="form-control" name="desc" id="desc"></textarea>
     </div>
     <div class="form-group">
-        <label for="postcreator">Post Creator</label>
-        <input type="text" class="form-control" name="postcreator" id="postcreator">
+        <label for="post_creator">Post Creator</label>
+        <select class="form-control" name="user_id" id="post_creator">
+          @foreach ($users as $user)
+            <option value="{{$user->id}}">{{$user->name}}</option>
+          @endforeach
+        </select>
       </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
