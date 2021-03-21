@@ -18,9 +18,12 @@ class PostController extends Controller
     public function show($postid)
     {
         $post = Post::find($postid);
-
+        
+        $user = User::find($post['user_id']);
+        // dd($user);
         return view('posts.show',[
-            'post' =>$post
+            'post' =>$post,
+            'user'=>$user
         ]);
     }
 
@@ -72,7 +75,12 @@ class PostController extends Controller
                   'user_id' => $requestedData['user_id']
         ]);
         return redirect()->route('posts.index');
-    
-
+    }
+    public function destroy($postid)
+    {
+        // dd($postid);
+        $post = Post::find($postid);
+        $post->delete();
+        return redirect()->route('posts.index' );
     }
 }

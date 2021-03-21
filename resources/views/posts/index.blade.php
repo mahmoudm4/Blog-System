@@ -19,11 +19,11 @@
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->user ? $post->user->name : "User Not Found"}}</td>
-                    <td>{{$post->created_at}}</td>
+                    <td>{{$post->created_at->format("Y-m-d")}}</td>
                     <td>
                         <a href="{{ route('posts.show',['post'=>$post->id]) }}" class="btn btn-info " >View</a>
                         <a href="{{ route('posts.edit',['post'=>$post->id]) }}" class="btn btn-primary">Edit</a>
-                        <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="#">Delete</a>
+                        <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ route('posts.destroy',['post'=>$post->id]) }}">Delete</a>
                     </td>
                 </tr>
             @endforeach
@@ -32,6 +32,6 @@
         
       </table>
       
-      {{ $posts->links() }}
+      {{ $posts->links("pagination::bootstrap-4") }}
 
 @endsection

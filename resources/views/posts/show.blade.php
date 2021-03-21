@@ -21,15 +21,15 @@
             <div class="card-body">
                 <div>
                     <h5 class="card-title d-inline">Name: </h5>
-                    {{-- <p class="card-text d-inline">{{$post['creator']['name']}}</p> --}}
+                    <p class="card-text d-inline">{{$user->name}}</p>
                 </div>
                 <div>
                     <h5 class="card-title d-inline">Email: </h5>
-                    {{-- <p class="card-text d-inline">{{$post['creator']['email']}}</p> --}}
+                    <p class="card-text d-inline">{{$user->email}}</p>
                 </div>
                 <div>
-                    <h5 class="card-title d-inline">Title: </h5>
-                    {{-- <p class="card-text d-inline">{{$post['title']}}</p> --}}
+                    <h5 class="card-title d-inline">Created At: </h5>
+                    <p class="card-text d-inline">{{$post['created_at']->format('l jS \\of F Y h:i:s A')}}</p>
                 </div>
             </div>
         </div>
