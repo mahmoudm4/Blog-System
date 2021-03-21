@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        $allposts = Post::all();
+        $allposts = Post::paginate(4);
         return view('posts.index',[
             'posts'=> $allposts
         ]);
@@ -52,12 +52,27 @@ class PostController extends Controller
         // $post->save();
         return redirect()->route('posts.index');
     }
-    public function edit()
+    public function edit($postid)
     {
-        $post = ['id' => 1, 'title' => 'Laravel','desc'=>'Laravel is an awesome framework' ,'posted_by' => 'Ali', 'created_at' => '2021-03-04','creator'=>['name'=>'Ali','email'=>'ali@ali.com']];
+        $post = Post::find($postid);
+        $users = User::all();
 
         return view('posts.edit',[
-            'post' =>$post
+            'post' =>$post,
+            'users' =>$users
         ]);
+    }
+    public function update(Request $request,$postid)
+    {
+        $requestedData = $request->all();
+        // dd($requestedData['title']);
+        Post::where('id', $postid)
+        ->update(['title' => $requestedData['title'],
+                  'desc' => $requestedData['desc'],
+                  'user_id' => $requestedData['user_id']
+        ]);
+        return redirect()->route('posts.index');
+    
+
     }
 }
