@@ -23,3 +23,7 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.e
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');  // For Update
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
