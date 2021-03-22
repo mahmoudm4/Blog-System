@@ -25,8 +25,15 @@
                     <td>
                         <a href="{{ route('posts.show',['post'=>$post->id]) }}" class="btn btn-info " >View</a>
                         <a href="{{ route('posts.edit',['post'=>$post->id]) }}" class="btn btn-primary">Edit</a>
-                        <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ route('posts.destroy',['post'=>$post->id]) }}">Delete</a>
+
+                        <form action="{{route('posts.destroy',['post'=>$post->id]) }}" class='d-inline'method="post">
+                          @method('delete')
+                          @csrf
+                          <button class="btn btn-danger" onclick="return confirm('Are you sure?')"  type="submit">Delete</button>
+                          {{-- <a class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')" href="{{ route('posts.destroy',['post'=>$post->id]) }}">Delete</a> --}}
+                        </form>
                     </td>
+
                 </tr>
             @endforeach
             
