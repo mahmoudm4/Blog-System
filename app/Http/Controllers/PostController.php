@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -60,6 +61,7 @@ class PostController extends Controller
     }
     public function edit($postid)
     {
+        
         $post = Post::find($postid);
         $users = User::all();
 
@@ -68,8 +70,9 @@ class PostController extends Controller
             'users' =>$users
         ]);
     }
-    public function update(Request $request,$postid)
+    public function update(UpdatePostRequest $request,$postid)
     {
+        //$request->validate();
         $requestedData = $request->all();
         // dd($requestedData['title']);
         Post::where('id', $postid)

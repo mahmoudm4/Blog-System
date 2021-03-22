@@ -16,6 +16,7 @@ class PostSeeder extends Seeder
     {
         Post::factory()
             ->count(500)
+            // ->hasUser()
             ->create();
     }
 }
