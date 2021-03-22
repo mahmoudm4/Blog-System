@@ -8,6 +8,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
+            <th scope="col">Slug</th>
             <th scope="col">Posted By</th>
             <th scope="col">Created At</th>
             <th scope="col">Action</th>
@@ -18,6 +19,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
+                    <td>{{$post->slug ? $post->slug : "slug Not Found"}}</td>
                     <td>{{$post->user ? $post->user->name : "User Not Found"}}</td>
                     <td>{{$post->created_at->format("Y-m-d")}}</td>
                     <td>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,16 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Sluggable;
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
     protected $fillable=[
         'title',
         'desc',
@@ -24,4 +35,13 @@ class Post extends Model
         
         return $this->belongsTo(User::class);
     }
+
+
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+   
 }

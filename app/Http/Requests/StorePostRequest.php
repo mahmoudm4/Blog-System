@@ -24,8 +24,9 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>['required','min:3'],
-            'desc'=>['required']
+            'title'=> ['required','min:3','unique:posts,title,'.$this->post],
+            'desc'=>['required','min:3'],
+            'user_id'=> ['required','exists:users,id'],
         ];
     }
 

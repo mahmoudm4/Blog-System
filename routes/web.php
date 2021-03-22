@@ -23,7 +23,5 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->mi
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update')->middleware('auth');  // For Update
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth'); // for Delete
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
-
+Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,4 +1,4 @@
-@extends('layouts.app1')
+@extends('layouts.app')
 @section('title') Show Post @endsection
 
 @section('content')

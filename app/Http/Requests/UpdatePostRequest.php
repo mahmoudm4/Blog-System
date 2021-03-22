@@ -24,19 +24,21 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required|unique:posts,title->ignore($post->title)|min:3',
-            'desc'=>['required','min:10']
+          //  'title'=>'required|unique:posts,title->ignore($post->id)|min:3',
+            'title'=> ['required','min:3','unique:posts,title,'.$this->post],
+            'desc'=>['required','min:10'],
+            'user_id'=> ['required','exists:users,id'],
         ];
     }
+
 
     public function messages()
     {
         return [
-            'title.required' => 'A title is required',
+            'title.required' => 'A title is requiredddddd',
             'title.min' => 'Title Must be More than 3 chars',
             'desc.required' => 'A message is required',
             'desc.min' => 'Description Must be More than 10 chars',
-
         ];
     }
 }
