@@ -41,7 +41,6 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
 
-        $request->validate();
         $requestedData = $request->all();
         //dd($requestedData);
         Post::create($requestedData);

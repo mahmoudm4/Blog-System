@@ -1,4 +1,4 @@
-@extends('layouts.app1')
+@extends('layouts.app')
 @section('title') Index Page @endsection
 @section('content')
 
