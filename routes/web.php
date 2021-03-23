@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +28,43 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
 Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 Auth::routes();
+
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    try {
+        $user = Socialite::driver('github')->user();
+        // dd($user);
+        $finduser = User::where('github_id', $user->id)->first();
+
+        if ($finduser) {
+            Auth::login($finduser);
+
+            return redirect()->route('posts.index');
+        } else {
+            $newUser = User::where('email', $user->email)->first();
+            if ($newUser) {
+                $newUser->github_id = $user->id;
+                $newUser->save();
+            } else {
+                $newUser = User::create([
+                    'name' => $user->name ? $user->name : $user->nickname,
+                    'email' => $user->email,
+                    'github_id'=> $user->id,
+                    'password' => encrypt('123456789'),
+                ]);
+            }
+           
+
+            Auth::login($newUser);
+
+            return redirect()->route('posts.index');
+        }
+    } catch (Exception $e) {
+        dd($e->getMessage());
+    }
+    
+});
