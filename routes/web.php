@@ -57,6 +57,43 @@ Route::get('/auth/callback', function () {
                     'password' => encrypt('123456789'),
                 ]);
             }
+            Auth::login($newUser);
+            return redirect()->route('posts.index');
+        }
+    } catch (Exception $e) {
+        dd($e->getMessage());
+    }
+    
+});
+
+Route::get('/auth/google', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+
+Route::get('/auth/google/callback', function () {
+    try {
+        $user = Socialite::driver('google')->stateless()->user();
+        // dd($user);
+        $finduser = User::where('google_id', $user->id)->first();
+
+        if ($finduser) {
+            Auth::login($finduser);
+            
+            return redirect()->route('posts.index');
+        } else {
+            $newUser = User::where('email', $user->email)->first();
+            if ($newUser) {
+                $newUser->github_id = $user->id;
+                $newUser->save();
+            } else {
+                $newUser = User::create([
+                    'name' => $user->name ? $user->name : $user->nickname,
+                    'email' => $user->email,
+                    'google_id'=> $user->id,
+                    'password' => encrypt('123456789'),
+                ]);
+            }
            
 
             Auth::login($newUser);
@@ -66,5 +103,7 @@ Route::get('/auth/callback', function () {
     } catch (Exception $e) {
         dd($e->getMessage());
     }
+
+
     
 });

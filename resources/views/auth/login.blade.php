@@ -56,6 +56,9 @@
                                 <a href="/auth/redirect" class="btn btn-dark">
                                     {{ __('Login with GitHub') }}
                                 </a>
+                                <a href="/auth/google" class="btn btn-dark">
+                                    {{ __('Login with Google') }}
+                                </a>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
